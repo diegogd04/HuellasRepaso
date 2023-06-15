@@ -1,6 +1,6 @@
 package com.dgd.huellasRepaso.data.local;
 
-import com.dgd.huellasRepaso.domain.models.Gato;
+import com.dgd.huellasRepaso.domain.models.Persona;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -14,30 +14,30 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class GatoFileLocalDataSource {
+public class PersonaFileLocalDataSource {
 
-    private static GatoFileLocalDataSource instance = null;
+    private static PersonaFileLocalDataSource instance = null;
 
     private Gson gson = new Gson();
 
-    private final Type typeGatoList = new TypeToken<ArrayList<Gato>>() {
+    private final Type typePersonaList = new TypeToken<ArrayList<Persona>>() {
     }.getType();
 
-    private GatoFileLocalDataSource() {
+    private PersonaFileLocalDataSource() {
     }
 
-    public void save(Gato gato) {
-        List<Gato> gatos = findAll();
-        gatos.add(gato);
-        saveToFile(gatos);
+    public void save(Persona persona) {
+        List<Persona> personas = findAll();
+        personas.add(persona);
+        saveToFile(personas);
     }
 
-    private void saveToFile(List<Gato> gatos) {
+    private void saveToFile(List<Persona> gatos) {
         try {
-            FileWriter myWriter = new FileWriter("gatos.txt");
+            FileWriter myWriter = new FileWriter("personas.txt");
             myWriter.write(gson.toJson(gatos));
             myWriter.close();
-            System.out.println("Gato guardado correctamente");
+            System.out.println("Persona guardado correctamente");
         } catch (IOException e) {
             System.out.println("Ha ocurrido un error");
             e.printStackTrace();
@@ -45,36 +45,36 @@ public class GatoFileLocalDataSource {
     }
 
 
-    public Gato findById(Integer gatoId) {
-        List<Gato> gatos = findAll();
-        for (Gato gato : gatos) {
-            if (Objects.equals(gato.getId(), gatoId)) {
-                return gato;
+    public Persona findById(Integer personaId) {
+        List<Persona> personas = findAll();
+        for (Persona persona : personas) {
+            if (Objects.equals(persona.getId(), personaId)) {
+                return persona;
             }
         }
         return null;
     }
 
-    public List<Gato> findAll() {
+    public List<Persona> findAll() {
         try {
-            File myObj = new File("gatos.txt");
+            File myObj = new File("personas.txt");
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
                 myReader.close();
-                return gson.fromJson(data, typeGatoList);
+                return gson.fromJson(data, typePersonaList);
             }
             myReader.close();
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-        return new ArrayList<Gato>();
+        return new ArrayList<Persona>();
     }
 
-    public static GatoFileLocalDataSource getInstance() {
+    public static PersonaFileLocalDataSource getInstance() {
         if (instance == null) {
-            instance = new GatoFileLocalDataSource();
+            instance = new PersonaFileLocalDataSource();
         }
         return instance;
     }
