@@ -37,7 +37,7 @@ public class PersonaFileLocalDataSource {
             FileWriter myWriter = new FileWriter("personas.txt");
             myWriter.write(gson.toJson(gatos));
             myWriter.close();
-            System.out.println("Persona guardado correctamente");
+            System.out.println("Persona guardada correctamente");
         } catch (IOException e) {
             System.out.println("Ha ocurrido un error");
             e.printStackTrace();
