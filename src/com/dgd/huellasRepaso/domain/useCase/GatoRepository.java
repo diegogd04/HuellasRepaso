@@ -9,7 +9,7 @@ public interface GatoRepository {
 
     public void delete(Gato gato);
 
-    public void getById(Integer gatoId);
+    public Gato getById(Integer gatoId);
 
     public List<Gato> getAll();
 }
