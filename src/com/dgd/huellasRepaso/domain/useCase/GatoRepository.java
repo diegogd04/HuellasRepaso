@@ -12,4 +12,6 @@ public interface GatoRepository {
     public Gato getById(Integer gatoId);
 
     public List<Gato> getAll();
+
+    List<Gato> getAllWithRemote();
 }
