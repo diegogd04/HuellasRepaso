@@ -2,6 +2,7 @@ package com.dgd.huellasRepaso.presentation;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        TerminalView terminalView = new TerminalView();
+        terminalView.init();
     }
 }
